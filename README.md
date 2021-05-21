@@ -1,6 +1,6 @@
 # darkwebserver
 
-![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/thomasgruebl/darkwebserver?style=plastic) ![GitHub last commit](https://img.shields.io/github/last-commit/thomasgruebl/darkwebserver?style=plastic) ![GitHub](https://img.shields.io/github/license/thomasgruebl/darkwebserver?style=plastic)
+![GitHub last commit](https://img.shields.io/github/last-commit/thomasgruebl/darkwebserver?style=plastic) ![GitHub](https://img.shields.io/github/license/thomasgruebl/darkwebserver?style=plastic)
 
 
 **Usage**
