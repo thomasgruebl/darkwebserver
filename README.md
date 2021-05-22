@@ -8,6 +8,10 @@ SHA256: b3165452d298699babb96352137cb6bbbfe3247a490f201b542b77c43e3acf5f
 
 Note: You should always check scripts before executing.
 
+<b>If you are using an ssh port other than 22, you need to adjust the fail2ban config in the harden_server() function.</b>
+
+Also consider changing your default ssh port in the file /etc/ssh/sshd_config and disabling SSH Root Login and using passwordless authentication (ssh-keygen).
+
 **Usage**
 ---
 
