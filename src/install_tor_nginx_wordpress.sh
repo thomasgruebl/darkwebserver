@@ -83,8 +83,8 @@ check_pw() {
 	if [[ -z "${pw}" ]]; then
  		>&2 printf "\nPassword must be set.\n"
  		exit 1
-	elif [[ "${#pw}" -le  7 ]]; then
-		>&2 printf "\nPassword must be 8 or more characters.\n"
+	elif [[ "${#pw}" -le  11 ]]; then
+		>&2 printf "\nPassword must be 12 or more characters.\n"
 		exit 1
 	fi
 	
