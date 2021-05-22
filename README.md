@@ -4,7 +4,7 @@
 
 Turns your Ubuntu server into a darkwebserver. Tested on Ubuntu Server 21.04.
 
-SHA256: b3165452d298699babb96352137cb6bbbfe3247a490f201b542b77c43e3acf5f  install_tor_nginx_wordpress.sh
+SHA256: b3165452d298699babb96352137cb6bbbfe3247a490f201b542b77c43e3acf5f
 
 Note: You should always check scripts before executing.
 
@@ -31,7 +31,9 @@ This script is intended to run on Ubuntu Server. You can either set up a VM runn
 This script comprises following features:
 
 (1)	Sets up tor, an nginx server, a mariadb database and configures wordpress
+
 (2)	Optionally hardens your Ubuntu server by setting up ufw, fail2ban, ...
+
 (3)	Enforces secure password policy for mariadb.
 
 
