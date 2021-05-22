@@ -1,11 +1,84 @@
 #!/bin/bash
 
+###################################
+#########IMPORTANT NOTICE##########
+###################################
 
-# checks password strength
+# If you are using an ssh port other than 22, you need to adjust the fail2ban config below
+
+
+# also consider changing your default ssh port in the file /etc/ssh/sshd_config
+# and disabling SSH Root Login and using a passwordless authentication (ssh-keygen)
+
+{ set +x; } 2>/dev/null
+secure_flag=
+purge_flag=
+while test $# -gt 0; do
+	case "$1" in
+		-h|--help)
+			echo "\ninstall_tor_nginx_wordpress.sh [options]"
+			echo 
+			echo "Options:"
+			echo "-h, --help			Show brief help."
+			echo "-s, --secure			Harden the Ubuntu Server (ufw, fail2ban, ...) before installing the server."
+			echo "-p, --purge			Purge all existing nginx, wordpress, database files."
+			exit 0
+			;;
+			
+		-s|--secure)
+			secure_flag=1
+			shift
+			;;
+			
+		-p|--purge)
+			purge_flag=1
+			shift
+			;;
+			
+		*)
+			break
+			;;
+	esac
+done
+set -x;
+
+
+# install and configure fail2ban, ufw
+harden_server() {
+	sudo apt-get install -y ufw
+	sudo ufw allow ssh
+	sudo ufw allow http
+	sudo ufw allow https
+	sudo ufw enable
+	
+	sudo apt-get install -y fail2ban
+	sudo cp /etc/fail2ban/fail2ban.conf /etc/fail2ban/fail2ban.local
+	sudo printf "\n[sshd]\nenabled = true\nport = 22\nfilter = sshd\nlogpath = /var/log/auth.log\nmaxretry = 5\n" >> /etc/fail2ban/fail2ban.local
+	sudo service fail2ban restart
+}
+
+# purges all existing nginx, wordpress, database files
+purge_existing_sites() {
+	cd /etc/nginx/conf.d
+	sudo rm *
+	
+	cd /var/www/html
+	FILES="/var/www/html/*"
+	for f in $FILES; do
+		if [[ "$f" != "/var/www/html/index.html" ]] && [[ "$f" != "/var/www/html/index.nginx-debian.html" ]]; then
+			sudo rm -r $f
+		fi
+	done
+	
+	cd
+	echo "Purged all website configs."
+}
+
+# check password strength
 check_pw() {
 	local pw="$1"
 	local pw_name="$2"
-
+	
 	# check pw length and if pw is set
 	if [[ -z "${pw}" ]]; then
  		>&2 printf "\nPassword must be set.\n"
@@ -14,7 +87,7 @@ check_pw() {
 		>&2 printf "\nPassword must be 8 or more characters.\n"
 		exit 1
 	fi
-
+	
 	# check pw structure
 	numeric='^[0-9]+$'
 	upper_case='^[A-Z]+$'
@@ -30,30 +103,30 @@ check_pw() {
 			special_bool=true
 		fi
 	done
-
+	
 	# generate secure password if needed
 	if [[ -z "$numeric_bool" ]] || [[ -z "$uppercase_bool" ]] || [[ -z "$lowercase_bool" ]] || [[ -z "$special_bool" ]] ; then
 		printf "$pw_name must contain at least one lower, upper case, numeric and special character.\n"
 		read -p "Do you want me to provide a secure password for you? (y/n)" yn
 		case $yn in
-			[Yy]* )
+			[Yy]* ) 
 				printf "\n\n"
 				echo -n "$(cat /dev/urandom | tr -dc "[:alnum:]" | fold -w 20 | head -n 1)!"
 				printf "\n\nCopy the password above into the terminal when asked for the root password. Then rerun the script.\n"
 				exit 1
 			;;
-			[Nn]* )
+			[Nn]* ) 
 				exit 1
 			;;
-			* )
+			* ) 
 				echo "Please answer yes or no."
 				exit 1
 			;;
 	    	esac
-	fi
+	fi	
 }
 
-
+{ set +x; } 2>/dev/null
 # query database and wordpress passwords and save to env variable
 if [[ -z ${MYSQL_ROOT_ENV} ]]; then
 	read -s -p "MYSQL_ROOT Password: " MYSQL_ROOT
@@ -106,7 +179,7 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
 fi
 
 echo "Starting installation..."
-
+set -x;
 
 # exit on error and trace commands
 logger --priority
@@ -117,6 +190,15 @@ set -o pipefail
 
 sudo apt-get update -y
 sudo apt-get upgrade -y
+
+if [[ ! -z "$secure_flag" ]]; then
+	harden_server
+fi
+
+if [[ ! -z "$purge_flag" ]]; then
+	purge_existing_sites
+fi
+
 
 # install nginx
 sudo apt-get install -y nginx
@@ -201,10 +283,10 @@ server {
         root /var/www/html/${MYSQL_DB_ENV}.com;
         index  index.php index.html index.htm;
         server_name ${MYSQL_DB_ENV}.com www.${MYSQL_DB_ENV}.com;
-
+        
         error_log /var/log/nginx/${MYSQL_DB_ENV}.com_error.log;
         access_log /var/log/nginx/${MYSQL_DB_ENV}.com_access.log;
-
+        
         client_max_body_size 100M;
         location / {
                 try_files \$uri \$uri/ /index.php?\$args;
@@ -254,3 +336,4 @@ printf "\n\nPut it into your TOR browser and you should see the Wordpress starti
 printf "\nAt this point, your darkwebsite is already reachable!\n\n"
 
 set -x;
+
