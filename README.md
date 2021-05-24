@@ -53,3 +53,5 @@ In case the webserver stops working somehow and you need to rerun the script (or
 
 I didn't find a convenience script that automatically sets up a darkwebserver using nginx and mariadb with wordpress while also providing the basic hardening steps for Ubuntu Server 21.04.
 
+<b>Also note that Wordpress is not the safest web framework out there and is notoriously known for using a lot of JavaScript, which in turn does not harmonise well with TOR. Hence, don't use it for any fancy applications where security is the main focus (such as payment platforms and alike). This script is just intended to help you moving your daily blog or whatever to a nice-looking .onion site.</b>
+
