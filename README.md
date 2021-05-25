@@ -4,7 +4,7 @@
 
 Turns your Ubuntu server into a darkwebserver. Tested on Ubuntu Server 21.04.
 
-SHA256: b3165452d298699babb96352137cb6bbbfe3247a490f201b542b77c43e3acf5f
+SHA256: 365b74b6b87d5d082ffe7a69b517c2cf278da957151ec0c04c719063a95d2dfc
 
 <b>Note: You should always check scripts before executing.</b>
 
