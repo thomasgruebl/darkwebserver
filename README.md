@@ -1,19 +1,11 @@
 # darkwebserver
 
-![GitHub last commit](https://img.shields.io/github/last-commit/thomasgruebl/darkwebserver?style=plastic) ![GitHub](https://img.shields.io/github/license/thomasgruebl/darkwebserver?style=plastic)
-
-<a style="text-decoration: none" href="https://github.com/thomasgruebl/darkwebserver/releases">
-<img src="https://img.shields.io/github/downloads/thomasgruebl/darkwebserver/total.svg?style=plastic" alt="Downloads">
-</a>
-
-<a style="text-decoration: none" href="https://github.com/thomasgruebl/darkwebserver/stargazers">
+![GitHub last commit](https://img.shields.io/github/last-commit/thomasgruebl/darkwebserver?style=plastic) ![GitHub](https://img.shields.io/github/license/thomasgruebl/darkwebserver?style=plastic) <a style="text-decoration: none" href="https://github.com/thomasgruebl/darkwebserver/stargazers">
 <img src="https://img.shields.io/github/stars/thomasgruebl/darkwebserver.svg?style=plastic" alt="Stars">
 </a>
-
 <a style="text-decoration: none" href="https://github.com/thomasgruebl/darkwebserver/fork">
 <img src="https://img.shields.io/github/forks/thomasgruebl/darkwebserver.svg?style=plastic" alt="Forks">
 </a>
-
 <a style="text-decoration: none" href="https://github.com/thomasgruebl/darkwebserver/issues">
 <img src="https://img.shields.io/github/issues/thomasgruebl/darkwebserver.svg?style=plastic" alt="Issues">
 </a>
