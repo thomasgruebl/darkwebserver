@@ -2,6 +2,22 @@
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/thomasgruebl/darkwebserver?style=plastic) ![GitHub](https://img.shields.io/github/license/thomasgruebl/darkwebserver?style=plastic)
 
+<a style="text-decoration: none" href="https://github.com/thomasgruebl/darkwebserver/releases">
+<img src="https://img.shields.io/github/downloads/thomasgruebl/darkwebserver/total.svg?style=plastic" alt="Downloads">
+</a>
+
+<a style="text-decoration: none" href="https://github.com/thomasgruebl/darkwebserver/stargazers">
+<img src="https://img.shields.io/github/stars/thomasgruebl/darkwebserver.svg?style=plastic" alt="Stars">
+</a>
+
+<a style="text-decoration: none" href="https://github.com/thomasgruebl/darkwebserver/fork">
+<img src="https://img.shields.io/github/forks/thomasgruebl/darkwebserver.svg?style=plastic" alt="Forks">
+</a>
+
+<a style="text-decoration: none" href="https://github.com/thomasgruebl/darkwebserver/issues">
+<img src="https://img.shields.io/github/issues/thomasgruebl/darkwebserver.svg?style=plastic" alt="Issues">
+</a>
+
 Turns your Ubuntu server into a darkwebserver. Tested on Ubuntu Server 21.04.
 
 SHA256: 365b74b6b87d5d082ffe7a69b517c2cf278da957151ec0c04c719063a95d2dfc
