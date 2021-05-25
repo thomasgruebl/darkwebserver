@@ -297,7 +297,7 @@ server {
                 fastcgi_param   SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
         }
         location ~* /xmlrpc.php$ {
-    		allow 172.0.0.1;
+    		allow 127.0.0.1;
     		deny all;
 	}
 }
